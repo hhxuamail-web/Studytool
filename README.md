@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/31542817/README.md)
+[README.md](https://github.com/user-attachments/files/31543874/README.md)
 # 📚 学习进度统计软件
 
 一款基于**微软 .NET 10 + WinUI 3** 构建的 Windows 11 桌面应用，用于统计和管理**每周学习进度**。采用微软最新的 **WinUI 3** 原生界面框架（NavigationView 导航、Mica 质感、流畅动画），打包为**原生 Windows 桌面 exe**，无需联网、无需安装运行时即可运行。
@@ -7,7 +7,7 @@
 
 ### 方式一：安装包（推荐）
 
-1. 打开 `安装包` 文件夹，双击 **`学习进度统计_安装包_v1.1.0.exe`**；
+1. 打开 `安装包` 文件夹，双击 **`学习进度统计_安装包_v2.0.0.exe`**；
 2. 按提示点击「下一步」完成安装（无需管理员权限）；
 3. 安装后自动创建**桌面快捷方式**和**开始菜单**入口，双击即可运行；
 4. 如需卸载，到「设置 → 应用」或开始菜单中运行「卸载学习进度统计」。
@@ -40,11 +40,11 @@
 
 ### 📊 统计分析
 - 指标卡：累计总学时、学习总天数、当前/历史最长连续打卡、最常学科目
-- 近 12 周总学时趋势图（ECharts）
+- 近 12 周总学时趋势图（软件原生 Win2D 绘制）
 - 本周各科目实际学时 vs 周目标对比图
 - 近 12 周时间分配饼图
 - 各科目近 8 周趋势折线图
-- 近 14 周 GitHub 风格每日学习热力图
+- 近 14 周 GitHub 风格每日学习热力图（原生自绘）
 - 周内每天平均学时分布
 - **自动适配深浅色主题**：深色模式下图表切换深色配色
 
@@ -94,7 +94,7 @@
 ```
 学习进度统计软件制作/
 ├── 安装包/                    ← 正式安装包（推荐使用）
-│   └── 学习进度统计_安装包_v1.1.0.exe
+│   └── 学习进度统计_安装包_v2.0.0.exe
 ├── 发布版/                    ← 绿色便携版（免安装，拷贝即用）
 │   ├── 启动学习进度统计.lnk     ← 中文快捷方式
 │   ├── StudyTracker.exe       ← 主程序（WinUI 3）
@@ -108,7 +108,7 @@
 
 ## 📦 版本更新规则（重要）
 
-- 每次发布新版本，新安装包放入 `安装包` 目录，**文件名必须带版本号**（如 `学习进度统计_安装包_v1.3.0.exe`）；
+- 每次发布新版本，新安装包放入 `安装包` 目录，**文件名必须带版本号**（如 `学习进度统计_安装包_v2.0.0.exe`）；
 - **旧版本安装包一律保留，不得删除**，方便随时回退到任意历史版本；
 - 版本记录见 `安装包\版本记录.txt`，发布新版本时请追加对应记录；
 - 版本号在 `StudyTrackerWinUI\StudyTrackerWinUI.csproj` 的 `<Version>` 和 `setup.iss` 的 `MyAppVersion` 中统一修改。
@@ -140,5 +140,6 @@ dotnet publish StudyTrackerWinUI\StudyTrackerWinUI.csproj -c Release -p:Platform
 - .NET 10 (LTS) / C# / **WinUI 3**（Microsoft.WindowsAppSDK）
 - NavigationView 原生导航 + 自包含 Windows App Runtime（免安装运行）
 - SQLite（Microsoft.Data.Sqlite）
-- ECharts 5（图表，WebView2 承载）、ClosedXML（Excel 导出）
+- Microsoft.Graphics.Win2D（原生自绘图表，不再嵌套网页）、ClosedXML（Excel 导出）
 - 数据 100% 保存在本机，隐私安全
+
