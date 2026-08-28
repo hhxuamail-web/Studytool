@@ -1,6 +1,7 @@
 ## 本软件周更
+为学习而生的软件
 
-[README.md](https://github.com/user-attachments/files/31543874/README.md)
+[README.md](https://github.com/user-attachments/files/31548317/README.md)
 # 📚 学习进度统计软件
 
 一款基于**微软 .NET 10 + WinUI 3** 构建的 Windows 11 桌面应用，用于统计和管理**每周学习进度**。采用微软最新的 **WinUI 3** 原生界面框架（NavigationView 导航、Mica 质感、流畅动画），打包为**原生 Windows 桌面 exe**，无需联网、无需安装运行时即可运行。
