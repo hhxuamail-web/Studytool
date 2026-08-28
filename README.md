@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/31541492/README.md)
 # 📚 学习进度统计软件
 
 一款基于**微软 .NET 10 + WinUI 3** 构建的 Windows 11 桌面应用，用于统计和管理**每周学习进度**。采用微软最新的 **WinUI 3** 原生界面框架（NavigationView 导航、Mica 质感、流畅动画），打包为**原生 Windows 桌面 exe**，无需联网、无需安装运行时即可运行。
@@ -75,6 +76,7 @@
 
 ### ⚙️ 设置
 - 每周起始日（周一 / 周日）
+- **界面主题**：浅色 / 深色 / 跟随系统（浅色纯色背景，深色带 WinUI Mica 质感）
 - 界面主题色（8 种预设 + 自定义）
 - 新增科目默认周目标
 - 启动时本周目标提醒开关
@@ -113,6 +115,7 @@ dotnet publish StudyTrackerWinUI\StudyTrackerWinUI.csproj -c Release -p:Platform
 
 ## ❓ 常见问题
 
+- **浅色/深色主题怎么切换？** 设置 → 界面主题。浅色主题使用纯色背景，深色/跟随系统使用 WinUI 3 的 Mica 毛玻璃质感（跟随系统时若系统为深色，Mica 保持深色）。
 - **为什么 exe 是英文名 StudyTracker.exe？** 经测试，部分 .NET 桌面应用在**中文文件名**下会异常退出（兼容问题），使用英文 exe 名 + 中文快捷方式最稳定。
 - **数据存在哪？** 安装版在 `%LOCALAPPDATA%\StudyTracker\study_progress.db`；便携版在 `发布版\data`。备份导出文件在 `data\backups`、`data\exports`。卸载软件不会删除数据。
 - **需要联网吗？** 完全不需要，所有功能本地运行。
