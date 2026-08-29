@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/31581167/README.md)
+[README.md](https://github.com/user-attachments/files/31590586/README.md)
 # 📱 学习进度统计 · Android 版
 
 **版本：v2.0.0** ｜ 适用于 Android 8.0 及以上（arm64）
@@ -63,10 +63,3 @@
 
 **提示 ABI 不匹配？**
 - 说明设备不是常见 arm64 架构，反馈型号后可补发对应版本
-
----
-
-## 📂 本目录内容
-- `学习进度统计_安卓版_v2.0.0.apk` —— 安装包
-- `README.md` —— 本说明
-- 完整开发文档见项目内 `StudyTrackerAndroid/README.md`
