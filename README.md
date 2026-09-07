@@ -1,6 +1,3 @@
-## 本软件周更
-为学习而生的软件
-
 [README.md](https://github.com/user-attachments/files/31548317/README.md)
 # 📚 学习进度统计软件
 
