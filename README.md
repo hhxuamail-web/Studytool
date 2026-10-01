@@ -1,3 +1,4 @@
+[README.en.md](https://github.com/user-attachments/files/32923568/README.en.md)
 [README.md](https://github.com/user-attachments/files/32923538/README.md)
 # 📚 学习进度统计
 
@@ -174,5 +175,181 @@ dotnet publish src\StudyTrackerWinUI\StudyTrackerWinUI.csproj `
 数据 100% 保存在本机。
 
 
+# 📚 Study Progress Tracker
+
+A Windows desktop app for **tracking and managing your weekly study progress**.
+
+| | |
+|---|---|
+| **Platform** | Windows 11 (Windows 10 1809+ also works) |
+| **Built with** | .NET 10 · C# · WinUI 3 · Win2D · SQLite |
+| **Current version** | **v2.1.2** |
+| **How it runs** | Fully offline · **self-contained — no runtime installation required** |
+
+> 📦 The Android version is no longer developed and has been archived under `archive\` — see `archive\README.md`.
+
+---
+
+## 🚀 Quick Start
+
+### Portable version (no installation)
+- Double-click **`启动学习进度统计.lnk`** in the project root, or
+- Run `releases\windows\portable\StudyTracker.exe` directly.
+- The whole `portable` folder can be copied to a USB drive or another PC — **no runtimes or dependencies needed**.
+
+### Installed version
+- Open `releases\windows\installers\` and run **`学习进度统计_安装包_v2.1.2.exe`**.
+- Desktop and Start Menu shortcuts are created automatically.
+- Data is stored in `%LOCALAPPDATA%\StudyTracker` and **is kept when you uninstall**.
+
+> On first launch there are no subjects yet. Go to **Subjects** and add a few (e.g. Calculus, English), then return to **This Week** to start logging study time.
+
+---
+
+## 📂 Project Layout
+
+```
+Study progress tracker/            (学习进度统计软件制作)
+├─ 启动学习进度统计.lnk            ← Portable-version shortcut
+├─ README.md                       ← Chinese documentation
+├─ README.en.md                    ← This file
+├─ global.json                     ← Pins the .NET 10 SDK
+├─ src/
+│  ├─ StudyTrackerWinUI/           ← Windows app source (the only active project)
+│  └─ legacy/                      ← Historical code, reference only
+│     ├─ StudyTracker-WPF-Blazor/  ← Earlier WPF + Blazor Hybrid version
+│     └─ python_prototype/         ← Original Python prototype
+├─ releases/windows/
+│  ├─ portable/                    ← Portable build (self-contained)
+│  └─ installers/                  ← Installers + version history (old builds are never deleted)
+├─ archive/                        ← Discontinued work (the former Android app)
+├─ scripts/                        ← Environment setup and one-click builds
+├─ docs/                           ← Developer documentation
+├─ tools/                          ← Toolchain downloads and caches (not in Git)
+└─ _backup/                        ← Source snapshots taken before reorganisations
+```
+
+---
+
+## ✨ Features
+
+**Today's study plan** — the dashboard works out what to study today and how long to spend on each subject. The recommendation weighs the remaining gap to each weekly target, the days left in the week, subject priority, and how long it has been since you last touched a subject; it is then scaled against your own historical daily average so the plan stays realistic. Each subject gets a progress row, a short explanation, and a one-click check-in that pre-fills the suggested hours.
+
+**Grades & exam records** — log exam, quiz, mock-exam and assignment scores, optionally linked to a subject, with full marks and weighting. Reports average score rate, weighted average, best/worst result, latest result with the change since last time, and a score-rate trend chart, filterable by subject and time range.
+
+**Spaced-repetition reminders** — review tasks are scheduled automatically 1 / 2 / 4 / 7 / 15 / 30 days after each study session (intervals are configurable). The review page groups work into overdue / today / next 7 days / recently completed, with mark-as-done, postpone, undo and delete. A reminder bar appears on the dashboard when reviews are due.
+
+**Mini floating timer** — an always-on-top mini window that shares the exact same timer state as the main app. It shows a per-segment progress bar and cycle dots (pomodoro N of M), a status dot that follows the current phase, and start / pause / reset / skip controls. Open it from the Pomodoro page or the system-tray context menu. The title bar follows light and dark themes.
+
+**Weekly check-in** — a subjects × 7-days grid. Click any cell to record study hours, completion percentage, a done flag and notes; quick buttons add `+0.5h / +1h / +1.5h / +2h`. Week navigation (previous / next / back to this week), a daily total row, per-subject progress bars and a reminder for subjects not yet studied today.
+
+**To-do list** — create, edit, delete and tick off tasks, linked to a subject with priority, due date and notes. Overdue tasks turn red and tasks due today turn orange. Includes summary cards, restore-completed, and move-up / move-down ordering.
+
+**Statistics** — total hours, days studied, current and longest streaks, most-studied subject; 12-week hours trend, this week's actual vs target per subject, 12-week time allocation, 8-week per-subject trends, a 14-week daily heat-map and average hours per weekday. All charts are drawn natively with **Win2D** — no embedded web views — and adapt automatically to light and dark themes.
+
+**Weekly report** — generated automatically with an overview, per-subject breakdown, missed-target warnings, comparison with last week and suggestions for next week. The reflection note is editable and saved. Export as HTML / TXT / Excel (the Excel file contains three worksheets).
+
+**Countdowns** — for exams, deadlines and anniversaries, colour-graded by remaining days (red within 7 days, orange 8–30 days, blue beyond 30, grey once passed). Custom colours, notes and ordering are supported.
+
+**Pomodoro timer** — focus / short break / long break cycles with durations adjustable on the page. Completed sessions are counted, and the time can be added to a subject's record for today with one click.
+
+**Subjects** — name, colour, weekly target hours, priority and notes, with re-ordering and archiving (history is preserved).
+
+**Data management** — export Excel / CSV / JSON backups, import a JSON backup, one-click database backup and restore, and a confirmation-guarded "erase all data".
+
+**Minimise to tray** — closing the window can ask each time, minimise to tray, or exit. The tray icon restores the window on double-click, with a right-click menu for show / mini timer / exit.
+
+**Settings** — week start day, theme (light / dark / follow system), default weekly target for new subjects, startup reminder, pomodoro durations, and the spaced-repetition switch with configurable intervals.
+
+---
+
+## 💾 Where Your Data Lives
+
+| Installation type | Database location |
+|---|---|
+| Portable | `releases\windows\portable\data\study_progress.db` (travels with the folder — USB-friendly) |
+| Installed | `%LOCALAPPDATA%\StudyTracker\study_progress.db` |
+
+Exported backups default to `data\backups` and `data\exports`.
+
+---
+
+## 🛠️ Development Environment
+
+Only two tools are required:
+
+```powershell
+# One-shot setup (skips anything already installed; a failing step does not abort the rest)
+scripts\setup-dev.bat
+```
+
+| Component | Notes |
+|---|---|
+| .NET 10 SDK | Installed by the script into `%USERPROFILE%\.dotnet` |
+| Inno Setup 6 | Installed by the script; used to build the installer |
+
+---
+
+## 🔨 Building
+
+| Target | Command | Output |
+|---|---|---|
+| Portable build | `scripts\build-windows.bat` | `releases\windows\portable` |
+| Installer | `scripts\build-installer.bat` | `releases\windows\installers\学习进度统计_安装包_v*.exe` |
+| Everything | `scripts\build-all.bat` | Both of the above |
+
+> Build the portable version before building the installer.
+> The build script **never deletes** user data in `portable\data`.
+
+Manual build — **`-r win-x64 --self-contained true` is mandatory**:
+
+```powershell
+dotnet publish src\StudyTrackerWinUI\StudyTrackerWinUI.csproj `
+  -c Release -p:Platform=x64 -r win-x64 --self-contained true `
+  -o releases\windows\portable
+```
+
+Omitting the self-contained flags produces a build that depends on a system-wide .NET runtime and **will exit immediately on a machine that does not have one**.
+`build-windows.ps1` verifies this and fails the build if `hostfxr.dll` / `coreclr.dll` are missing.
+
+### Performance self-check
+
+```powershell
+scripts\measure-db.bat          # fails with exit code 1 if the threshold is exceeded
+```
+
+Measures how many database connections a start-up plus first dashboard render opens
+(historically 72 before the snapshot architecture; currently 5).
+
+---
+
+## 📦 Versioning Rules (important)
+
+1. New installers go into `releases\windows\installers` and must include the version number in the file name.
+2. **Old installers are never deleted** so that any previous version can be reinstalled.
+3. Append each release to `releases\windows\installers\版本记录.txt`.
+4. The version number must be updated in both places, otherwise `build-installer.ps1` fails:
+   - `<Version>` in `src\StudyTrackerWinUI\StudyTrackerWinUI.csproj`
+   - `MyAppVersion` in `scripts\setup.iss`
+5. If an installer with the same name already exists, the new one is written to `tools\build-verify\`
+   instead — historical release files are never overwritten.
+
+---
+
+## ❓ FAQ
+
+- **Why is the executable called `StudyTracker.exe`?** Some .NET desktop apps misbehave when the executable name contains non-ASCII characters; an English executable name plus a Chinese shortcut is the most reliable combination.
+- **Do I need to install .NET?** No. The build is self-contained; the runtime ships with the app.
+- **Does it need internet access?** No — everything runs locally.
+- **Nothing happens when I double-click / the window flashes and closes.** That means you have an older build that depends on a system runtime. Rebuild with `scripts\build-windows.ps1`, which verifies self-containment.
+- **The shortcut no longer works.** The project folder was moved. Run `scripts\build-windows.bat` once and the shortcut is recreated.
+
+---
+
+## 🧱 Technology
+
+.NET 10 · C# · WinUI 3 (Microsoft.WindowsAppSDK) · Win2D · Microsoft.Data.Sqlite · ClosedXML
+
+All data stays on your own machine.
 
 
